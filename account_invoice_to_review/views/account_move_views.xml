@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Odoo Community Association (OCA)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_invoice_search_to_review" model="ir.ui.view">
+        <field name="name">account.invoice.search (in account_invoice_to_review)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='myinvoices']" position="before">
+                <filter
+                    name="to_review"
+                    string="To Review"
+                    domain="[('to_review', '=', True)]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_list_to_review" model="ir.ui.view">
+        <field name="name">account.invoice.list (in account_invoice_to_review)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">to_review == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="to_review" column_invisible="True" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_form_to_review" model="ir.ui.view">
+        <field name="name">account.move.form (in account_invoice_to_review)</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="to_review" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
