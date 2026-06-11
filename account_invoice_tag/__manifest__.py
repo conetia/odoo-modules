@@ -1,4 +1,4 @@
-# Copyright 2026 Odoo Community Association (OCA)
+# Copyright 2026 Conetia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Account Invoice Tag",
@@ -7,8 +7,8 @@
     "development_status": "Beta",
     "maintainers": [],
     "category": "Accounting",
-    "author": "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/account-invoicing",
+    "author": "Conetia",
+    "website": "https://conetia.com",
     "license": "AGPL-3",
     "depends": ["account"],
     "data": [
