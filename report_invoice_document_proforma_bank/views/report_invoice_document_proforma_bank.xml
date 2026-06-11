@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_proforma_bank" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[p[@name='payment_communication']]" position="replace">
+                <div class="mb-3" t-if="o.move_type in ('out_invoice', 'in_refund') and print_with_payments">
+                    <p name="payment_communication">
+                        <t t-if="o.payment_reference">
+                            Comunicaciones de pago <span class="fw-bold" t-field="o.payment_reference"/>
+                        </t>
+                        <t t-else="">
+                            Comunicaciones de pago <span class="fw-bold">PROFORMA</span>
+                        </t>
+                        <t t-if="o.partner_bank_id">
+                            <br/> en esta cuenta: <span t-field="o.partner_bank_id.acc_number" class="fw-bold"/>
+                        </t>
+                        <t t-elif="o.company_id.partner_id.bank_ids">
+                            <br/> en esta cuenta: <span t-out="o.company_id.partner_id.bank_ids[0].acc_number" class="fw-bold"/>
+                        </t>
+                    </p>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
